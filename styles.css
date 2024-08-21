@@ -10,8 +10,8 @@ body {
 
 .building {
     display: flex;
-    flex-direction: column-reverse; 
-    width: 108rem; 
+    flex-direction: column-reverse;
+    width: 108rem;
 }
 
 .floor {
@@ -19,11 +19,11 @@ body {
     flex-direction: column;
     border: 1px solid #333;
     background-color: #fff;
-    padding: 20px; 
-    margin: 15px 0; 
-    width: 100%; 
-    height: 110px; 
-    position: relative; 
+    padding: 20px;
+    margin: 15px 0;
+    width: 100%;
+    height: 110px;
+    position: relative;
 }
 
 .floor-info {
@@ -39,24 +39,28 @@ body {
 
 .buttons {
     display: flex;
-    align-items: center; 
-    gap: 20px; 
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+    margin-left: 50px;
 }
 
 .control {
     display: flex;
-    flex-direction: column; 
-    align-items: center; 
+    flex-direction: column;
+    align-items: center;
 }
 
 .empty-boxes {
     display: flex;
     gap: 10px;
+    flex-grow: 1; /* Ensure the empty boxes stretch to fill remaining space */
 }
 
 .empty-box {
     width: 120px;
     height: 129px;
+    margin-left: 10px;
     background-color: #ccc;
     border: 1px solid #999;
 }
@@ -69,14 +73,14 @@ button {
 .lifts {
     display: flex;
     position: absolute;
-    bottom: 0; 
-    left: 200px; 
-    gap: 120px; 
+    bottom: 0;
+    left: 200px;
+    gap: 120px;
 }
 
 .lift {
-    width: 120px; 
-    height: 160px; 
+    width: 120px;
+    height: 160px;
     background-color: #333;
     border-radius: 5px;
 }
