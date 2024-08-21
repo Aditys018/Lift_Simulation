@@ -1,39 +1,45 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const lifts = document.querySelectorAll('.lift');
-    const floors = document.querySelectorAll('.floor');
-    const floorHeight = 90; // height of each floor (same as .floor in CSS)
+    const form = document.getElementById('building-form');
+    const buildingContainer = document.getElementById('building-container');
 
-    // Initialize lift positions on the first floor
-    lifts.forEach(lift => {
-        lift.style.transform = `translateY(${(floors.length - 1) * floorHeight}px)`;
-        lift.dataset.currentFloor = '1';
-    });
-
-    // Function to move the lift to the desired floor
-    function moveLift(lift, targetFloor) {
-        const targetPosition = (floors.length - targetFloor) * floorHeight;
+    form.addEventListener('submit', (event) => {
+        event.preventDefault();
         
-        console.log(`Moving lift to floor ${targetFloor}`);
-        lift.style.transform = `translateY(${targetPosition}px)`;
-        lift.dataset.currentFloor = targetFloor;
-    }
+        // Clear previous building content
+        buildingContainer.innerHTML = '';
 
-    // Handle the button clicks
-    document.querySelectorAll('.buttons button').forEach(button => {
-        button.addEventListener('click', () => {
-            const targetFloor = parseInt(button.dataset.floor);
-            const direction = button.classList.contains('up') ? 'up' : 'down';
+        // Get user inputs
+        const numFloors = parseInt(document.getElementById('numFloors').value);
+        const numLifts = parseInt(document.getElementById('numLifts').value);
 
-            // Find the lift on the same floor and move it
-            const floorLifts = button.closest('.floor').querySelectorAll('.lift');
-            floorLifts.forEach(lift => {
-                const currentFloor = parseInt(lift.dataset.currentFloor);
+        // Generate floors
+        for (let i = 0; i < numFloors; i++) {
+            const floor = document.createElement('div');
+            floor.className = 'floor';
+            floor.id = `floor-${i}`;
+            floor.innerHTML = `
+                <div class="floor-info">
+                    <div class="floor-number">Floor ${numFloors - i}</div>
+                    <div class="buttons">
+                        ${Array.from({ length: numLifts }, (_, j) => `
+                            <div class="control">
+                                <button class="up">▲</button>
+                                <button class="down">▼</button>
+                            </div>
+                            <div class="empty-box"></div>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+            buildingContainer.appendChild(floor);
+        }
 
-                if ((direction === 'up' && currentFloor < targetFloor) ||
-                    (direction === 'down' && currentFloor > targetFloor)) {
-                    moveLift(lift, targetFloor);
-                }
-            });
-        });
+        // Generate lifts
+        const liftsContainer = document.createElement('div');
+        liftsContainer.className = 'lifts';
+        liftsContainer.innerHTML = Array.from({ length: numLifts }, (_, i) => `
+            <div class="lift" id="lift-${i + 1}"></div>
+        `).join('');
+        buildingContainer.appendChild(liftsContainer);
     });
 });
