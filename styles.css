@@ -1,6 +1,6 @@
 /* Body */
 body {
-    background-color: #06141B; /* Replaced with specific color */
+    background-color: #1B2A40; /* Replaced with specific color */
     margin-top: 2%;
 }
 
@@ -12,16 +12,16 @@ body {
 }
 
 .header__heading {
-    color: #e45826; /* Replaced with specific color */
+    color: #515A6B; /* Replaced with specific color */
 }
 
 .divider {
-    color: #e1e1ec; /* Replaced with specific color */
+    color: #515A6B; /* Replaced with specific color */
 }
 
 /* Form Styles */
 #form {
-    background-color: #233745; /* Background color for the form */
+    background-color: #223850; /* Background color for the form */
     padding: 2rem;
     margin: 2rem auto;
     max-width: 600px;
@@ -49,7 +49,7 @@ body {
 }
 
 #form button {
-    background-color: #e45826; /* Button color */
+    background-color: #314963; /* Button color */
     color: #e1e1ec; /* Button text color */
     border: none;
     border-radius: 8px;
@@ -61,7 +61,7 @@ body {
 }
 
 #form button:hover {
-    background-color: #d84315; /* Darker button color on hover */
+    background-color: #515A6B; /* Darker button color on hover */
 }
 
 /* Control Inputs */
@@ -106,20 +106,20 @@ body {
 
 /* If you want different styles for the floor and lift inputs, you can differentiate them like this: */
 .control--floor-input input {
-    color: #bada55; /* Example color for floor input fields */
+    color: #515A6B; /* Example color for floor input fields */
     font-size: 20px; /* Example font size for floor input fields */
     font-family: "Arial", sans-serif; /* Example font family for floor input fields */
 }
 
 .control--lift-input input {
-    color: #ff6347; /* Example color for lift input fields */
+    color: #515A6B; /* Example color for lift input fields */
     font-size: 22px; /* Example font size for lift input fields */
     font-family: "Comic Sans MS", sans-serif; /* Example font family for lift input fields */
 }
 
 /* Control Button Styles */
 .control__button {
-    background-color: #e45826; /* Replaced with specific color */
+    background-color: #515A6B; /* Replaced with specific color */
     padding: 10px 20px;
     margin: 10px;
     border: none;
@@ -137,7 +137,7 @@ body {
 
 /* Floors and Lifts Container */
 .container {
-    background-color: #e6d5b8; /* Replaced with specific color */
+    background-color: #515A6B; /* Replaced with specific color */
     position: relative;
     border-radius: 8px;
     padding: 15px;
@@ -162,12 +162,12 @@ body {
 }
 
 .control-btn--up {
-    background-color: #233745; /* Replaced with specific color */
+    background-color: #223850; /* Replaced with specific color */
     margin-left: 7rem;
 }
 
 .control-btn--down {
-    background-color: #253745; /* Replaced with specific color */
+    background-color: #223850; /* Replaced with specific color */
     margin-left: 7rem;
 }
 
@@ -179,7 +179,7 @@ body {
 
 /* Floor */
 .floor {
-    height: 30%;
+    height: 35%;
     position: relative;
 }
 
@@ -197,8 +197,8 @@ body {
 }
 
 .hr {
-    background-color: #504b4b; /* Replaced with specific color */
-    height: 4px;
+    background-color: #fffefe; /* Replaced with specific color */
+    height: 1px;
     margin: 0;
 }
 
@@ -210,14 +210,14 @@ body {
     position: absolute;
     left: 15%;
     bottom: 1%;
-    background-color: #beb9ac; /* Changed to yellow */
+    background-color: #c7d1e2; /* Changed to yellow */
     overflow: hidden;
     border-radius: 8px;
     border-color: #e1e1ec;
 }
 
 .lift__door {
-    background-color: #4A5C6A; /* Changed to yellow */
+    background-color: #475B6A; /* Changed to yellow */
     width: 50%;
     height: 100%;
     position: relative;
