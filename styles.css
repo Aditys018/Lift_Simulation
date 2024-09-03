@@ -17,7 +17,6 @@ body {
 .floor {
     display: flex;
     flex-direction: column;
-    border: 1px solid #333;
     background-color: #fff;
     padding: 20px;
     margin: 15px 0;
@@ -37,39 +36,14 @@ body {
     font-weight: bold;
 }
 
-.buttons {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    width: 100%;
-    margin-left: 50px;
-}
-
-.control {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.empty-boxes {
-    display: flex;
-    gap: 10px;
-    flex-grow: 1; /* Ensure the empty boxes stretch to fill remaining space */
-}
-
-.empty-box {
-    width: 120px;
-    height: 129px;
-    margin-left: 10px;
-    background-color: #ccc;
-    border: 1px solid #999;
-}
+/* Removed unnecessary .buttons and .control classes */
 
 button {
     padding: 10px;
     cursor: pointer;
 }
 
+/* Adjust the positioning of the lifts */
 .lifts {
     display: flex;
     position: absolute;
@@ -83,4 +57,38 @@ button {
     height: 148px;
     background-color: #333;
     border-radius: 5px;
+}
+
+/* Add horizontal line below each floor */
+.floor::after {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 2px;
+    background-color: #333; /* Color of the horizontal line */
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+
+/* Style for the control buttons */
+.control-buttons {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    left: 10px; /* Adjust the position as needed */
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.control-btn {
+    padding: 10px;
+    cursor: pointer;
+    background-color: #ddd;
+    border: none;
+    margin: 5px 0;
+}
+
+.control-btn:hover {
+    background-color: #ccc;
 }
