@@ -37,6 +37,17 @@ function createLifts(n) {
   }
 }
 
+function getFloorLabel(floor_number) {
+  switch (floor_number) {
+    case 1: return "Floor 0";
+    case 2: return "Floor 1";
+    case 3: return "Floor 2";
+    case 4: return "Floor 3";
+    // Add more cases if you have more floors
+    default: return `Floor ${floor_number}`;
+  }
+}
+
 function createFloor(floor_number) {
   let container = document.getElementById("container");
 
@@ -45,13 +56,13 @@ function createFloor(floor_number) {
   new_div.id = "floor" + floor_number;
 
   let new_up_btn = document.createElement("button");
-  let up_text = document.createTextNode("U");
+  let up_text = document.createTextNode("▲");
   let new_down_btn = document.createElement("button");
-  let down_text = document.createTextNode("D");
+  let down_text = document.createTextNode("▼");
   let new_br = document.createElement("br");
   let new_hr = document.createElement("hr");
   let new_span = document.createElement("span");
-  let new_floor_text = document.createTextNode(floor_number);
+  let new_floor_text = document.createTextNode(getFloorLabel(floor_number));
   new_span.appendChild(new_floor_text);
   new_span.className = "floor__number";
   new_hr.className = "hr";

@@ -6,7 +6,7 @@
 body {
     margin: 10px;
     padding: 0;
-    background-color: #000000; /* Replaced with specific color */
+    background-color: #494949; /* Replaced with specific color */
 }
 
 /* Header */
@@ -93,15 +93,16 @@ body {
 
 /* Control Buttons */
 .control-btn {
-    font-size: 24px; /* Replaced with specific font size */
+    font-size: 20px; /* Replaced with specific font size */
     color: #e1e1ec; /* Replaced with specific color */
-    margin: 10px;
-    padding: 10px;
+    margin: 15px;
+    padding: 15px;
     border: none;
     border-radius: 8px;
     outline: none;
     cursor: pointer;
     transition: transform 250ms;
+    margin-top: 0.5px;
 }
 
 .control-btn:hover {
@@ -110,39 +111,41 @@ body {
 
 .control-btn--up {
     background-color: #e45826; /* Replaced with specific color */
+    margin-left: 7rem;
 }
 
 .control-btn--down {
     background-color: #f0a500; /* Replaced with specific color */
+    margin-left: 7rem;
 }
 
 .arrow-icon {
-    margin: 10px 5px 5px;
-    width: 30px;
-    height: 30px;
+    margin: 5px 2px 2px;
+    width: 10px;
+    height: 10px;
 }
 
 /* Floor */
 .floor {
-    height: 20%;
+    height: 30%;
     position: relative;
 }
 
 .floor__number {
-    background-color: #000000; /* Replaced with specific color */
     color: #e1e1ec; /* Replaced with specific color */
-    padding: 15px 20px;
+    padding: 20px 15px;
     border-radius: 50%;
-    font-size: 24px; /* Replaced with specific font size */
+    font-size: 20px; /* Replaced with specific font size */
     font-weight: 700;
     position: absolute;
-    right: 20px;
-    top: 25%;
+    left: 0rem;
+    top: 30%;
     float: right;
+    margin-bottom: 1rem;
 }
 
 .hr {
-    background-color: #000000; /* Replaced with specific color */
+    background-color: #504b4b; /* Replaced with specific color */
     height: 4px;
     margin: 0;
 }
