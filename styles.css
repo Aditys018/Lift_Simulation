@@ -1,40 +1,41 @@
-/* Body */
+* {
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
 body {
-    background-color: #1B2A40; /* Replaced with specific color */
+    background-color: #1B2A40;
     margin-top: 2%;
 }
 
-/* Header */
 .header {
-    font-size: 50px; /* Replaced with specific font size */
+    font-size: 50px;
     font-weight: 700;
     margin-left: -20px;
 }
 
 .header__heading {
-    color: #515A6B; /* Replaced with specific color */
+    color: #515A6B;
 }
 
 .divider {
-    color: #515A6B; /* Replaced with specific color */
+    color: #515A6B;
 }
 
-/* Form Styles */
 #form {
-    background-color: #223850; /* Background color for the form */
+    background-color: #223850;
     padding: 2rem;
     margin: 2rem auto;
     max-width: 600px;
-    max-height: 250px;
+    max-height: 290px;
     border-radius: 8px;
     text-align: center;
 }
 
-/* Form Labels and Inputs */
 #form label {
     display: block;
-    color: #e1e1ec; /* Text color for labels */
-    margin: 0.5rem 0; /* Margin for labels */
+    color: #e1e1ec;
+    margin: 0.5rem 0;
 }
 
 #form input {
@@ -49,8 +50,8 @@ body {
 }
 
 #form button {
-    background-color: #314963; /* Button color */
-    color: #e1e1ec; /* Button text color */
+    background-color: #314963;
+    color: #e1e1ec;
     border: none;
     border-radius: 8px;
     padding: 10px 20px;
@@ -61,28 +62,27 @@ body {
 }
 
 #form button:hover {
-    background-color: #515A6B; /* Darker button color on hover */
+    background-color: #515A6B;
 }
 
-/* Control Inputs */
 .control {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    text-align: center; /* Ensures text inside is centered */
-    margin: 0 auto; /* Centering the control container */
-    width: 100%; /* Ensures full width for centering */
+    text-align: center;
+    margin: 0 auto;
+    width: 100%;
 }
 
 .control__title {
-    color: #ffffff; /* Text color set to white */
-    font-size: 24px; /* Replaced with specific font size */
-    font-family: "Fredoka One", sans-serif; /* Replaced with specific font */
+    color: #ffffff;
+    font-size: 24px;
+    font-family: "Fredoka One", sans-serif;
 }
 
 .control__form {
-   color: #e1e1ec; /* Replaced with specific color */
+    color: #e1e1ec;
 }
 
 .control--floor-input,
@@ -91,41 +91,38 @@ body {
     width: 80%;
 }
 
-/* Lift and Building Input Fields */
 .control--floor-input input,
 .control--lift-input input {
-    background-color: transparent; /* Keeps the background transparent */
-    border: 4px solid #e1e1ec; /* Border color */
+    background-color: transparent;
+    border: 4px solid #e1e1ec;
     border-radius: 8px;
     padding: 5px 10px;
-    color: #ffffff; /* Text color */
-    font-size: 24px; /* Font size */
-    font-weight: 700; /* Font weight */
-    font-family: "Fredoka One", sans-serif; /* Font family */
+    color: #ffffff;
+    font-size: 24px;
+    font-weight: 700;
+    font-family: "Fredoka One", sans-serif;
 }
 
-/* If you want different styles for the floor and lift inputs, you can differentiate them like this: */
 .control--floor-input input {
-    color: #515A6B; /* Example color for floor input fields */
-    font-size: 20px; /* Example font size for floor input fields */
-    font-family: "Arial", sans-serif; /* Example font family for floor input fields */
+    color: #515A6B;
+    font-size: 20px;
+    font-family: "Arial", sans-serif;
 }
 
 .control--lift-input input {
-    color: #515A6B; /* Example color for lift input fields */
-    font-size: 22px; /* Example font size for lift input fields */
-    font-family: "Comic Sans MS", sans-serif; /* Example font family for lift input fields */
+    color: #515A6B;
+    font-size: 22px;
+    font-family: "Comic Sans MS", sans-serif;
 }
 
-/* Control Button Styles */
 .control__button {
-    background-color: #515A6B; /* Replaced with specific color */
+    background-color: #515A6B;
     padding: 10px 20px;
     margin: 10px;
     border: none;
     border-radius: 8px;
-    font-size: 20px; /* Replaced with specific font size */
-    color: #e1e1ec; /* Replaced with specific color */
+    font-size: 20px;
+    color: #e1e1ec;
     outline: none;
     cursor: pointer;
     transition: transform 250ms;
@@ -135,18 +132,16 @@ body {
     transform: scale(1.1);
 }
 
-/* Floors and Lifts Container */
 .container {
-    background-color: #515A6B; /* Replaced with specific color */
+    background-color: #515A6B;
     position: relative;
     border-radius: 8px;
     padding: 15px;
 }
 
-/* Control Buttons */
 .control-btn {
-    font-size: 20px; /* Replaced with specific font size */
-    color: #e1e1ec; /* Replaced with specific color */
+    font-size: 20px;
+    color: #e1e1ec;
     margin: 15px;
     padding: 15px;
     border: none;
@@ -162,12 +157,12 @@ body {
 }
 
 .control-btn--up {
-    background-color: #223850; /* Replaced with specific color */
+    background-color: #223850;
     margin-left: 7rem;
 }
 
 .control-btn--down {
-    background-color: #223850; /* Replaced with specific color */
+    background-color: #223850;
     margin-left: 7rem;
 }
 
@@ -177,17 +172,16 @@ body {
     height: 10px;
 }
 
-/* Floor */
 .floor {
     height: 35%;
     position: relative;
 }
 
 .floor__number {
-    color: #e1e1ec; /* Replaced with specific color */
+    color: #e1e1ec;
     padding: 20px 15px;
     border-radius: 50%;
-    font-size: 20px; /* Replaced with specific font size */
+    font-size: 20px;
     font-weight: 700;
     position: absolute;
     left: 0rem;
@@ -197,12 +191,11 @@ body {
 }
 
 .hr {
-    background-color: #fffefe; /* Replaced with specific color */
+    background-color: #fffefe;
     height: 1px;
     margin: 0;
 }
 
-/* Lift */
 .lift {
     display: block;
     height: 100%;
@@ -210,14 +203,14 @@ body {
     position: absolute;
     left: 15%;
     bottom: 1%;
-    background-color: #c7d1e2; /* Changed to yellow */
+    background-color: #c7d1e2;
     overflow: hidden;
     border-radius: 8px;
     border-color: #e1e1ec;
 }
 
 .lift__door {
-    background-color: #475B6A; /* Changed to yellow */
+    background-color: #475B6A;
     width: 50%;
     height: 100%;
     position: relative;
@@ -232,10 +225,9 @@ body {
     float: right;
 }
 
-/* Media Queries */
 @media (max-width: 768px) {
     .header__heading {
-        font-size: 32px; /* Replaced with specific font size */
+        font-size: 32px;
     }
 
     .floor__number {
@@ -243,6 +235,6 @@ body {
     }
 
     .control-btn {
-        font-size: 20px; /* Replaced with specific font size */
+        font-size: 20px;
     }
 }
