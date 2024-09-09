@@ -39,10 +39,11 @@ function createLifts(n) {
 
 function getFloorLabel(floor_number) {
   switch (floor_number) {
-    case 1: return "Floor 0";
-    case 2: return "Floor 1";
-    case 3: return "Floor 2";
-    case 4: return "Floor 3";
+    case 1: return "Floor 1";
+    case 2: return "Floor 2";
+    case 3: return "Floor 3";
+    case 4: return "Floor 4";
+    case 5: return "Floor 5";
     // Add more cases if you have more floors
     default: return `Floor ${floor_number}`;
   }
