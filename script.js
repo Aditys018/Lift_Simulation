@@ -1,235 +1,186 @@
-let lifts = [];
-let q = [];
-let input_floors = document.getElementById("input-floors");
-let input_lifts = document.getElementById("input-lifts");
-let no_of_floors;
-let no_of_lifts;
+let currLiftPositionArr = [];
+let noOfFloors;
+let noOfLifts;
+let liftCallsQueue = [];
 let intervalId;
-let tempInterval;
+let allLiftInfo;
+let activeLiftsDestinations = [];
+currLiftPositionArr = []; 
 
-let form = document.getElementById("form");
-form.addEventListener("click", function (e) {
-  e.preventDefault();
+
+
+document.getElementById('submit').addEventListener('click', (e) => {
+    e.preventDefault();
+    startVirtualSimulation();
 });
 
-function createLifts(n) {
-  lifts = [];
-  for (let i = 1; i <= n; i++) {
-    let lift = document.createElement("div");
-    lift.className = "lift";
-    lift.id = "l" + i;
-    let left_door = document.createElement("div");
-    let right_door = document.createElement("div");
-    left_door.classList.add("lift__door", "lift__door-left");
-    right_door.classList.add("lift__door", "lift__door-right");
-    left_door.id = "ld" + i;
-    right_door.id = "rd" + i;
-    lift.style.left = `${10 + 10 * i}%`;
-    lift.appendChild(left_door);
-    lift.appendChild(right_door);
-    let liftObj = {
-      id: i,
-      lift: lift,
-      currentFloor: 1,
-      moving: false,
-    };
-    lifts.push(liftObj);
-  }
-}
-
-function getFloorLabel(floor_number) {
-  switch (floor_number) {
-    case 1: return "Floor 1";
-    case 2: return "Floor 2";
-    case 3: return "Floor 3";
-    case 4: return "Floor 4";
-    case 5: return "Floor 5";
-    // Add more cases if you have more floors
-    default: return `Floor ${floor_number}`;
-  }
-}
-
-function createFloor(floor_number) {
-  let container = document.getElementById("container");
-
-  let new_div = document.createElement("div");
-  new_div.className = "floor";
-  new_div.id = "floor" + floor_number;
-
-  let new_up_btn = document.createElement("button");
-  let up_text = document.createTextNode("▲");
-  let new_down_btn = document.createElement("button");
-  let down_text = document.createTextNode("▼");
-  let new_br = document.createElement("br");
-  let new_hr = document.createElement("hr");
-  let new_span = document.createElement("span");
-  let new_floor_text = document.createTextNode(getFloorLabel(floor_number));
-  new_span.appendChild(new_floor_text);
-  new_span.className = "floor__number";
-  new_hr.className = "hr";
-  new_hr.id = "hr" + floor_number;
-  new_up_btn.classList.add("control-btn", "control-btn--up");
-  new_down_btn.classList.add("control-btn", "control-btn--down");
-
-  new_up_btn.appendChild(up_text);
-  new_up_btn.id = "up" + floor_number;
-  new_down_btn.appendChild(down_text);
-  new_down_btn.id = "down" + floor_number;
-
-  new_div.appendChild(new_up_btn);
-  new_div.appendChild(new_br);
-  new_div.appendChild(new_down_btn);
-  new_div.appendChild(new_span);
-  new_div.appendChild(new_hr);
-
-  container.insertBefore(new_div, container.childNodes[0]);
-}
-
-function closeDoor(e) {
-  let target_id = e.target.id;
-  let lift_no = target_id[target_id.length - 1];
-  let left_door = document.getElementById("ld" + lift_no);
-  let right_door = document.getElementById("rd" + lift_no);
-  right_door.removeEventListener("webkitTransitionEnd", closeDoor);
-  left_door.style.transform = `translateX(0)`;
-  right_door.style.transform = `translateX(0)`;
-  left_door.style.transition = `all 2.5s ease-out`;
-  right_door.style.transition = `all 2.5s ease-out`;
-  setTimeout(() => {
-    stop_lift(lift_no);
-  }, 2500);
-}
-
-function stop_lift(lift_no) {
-  for (let lft of lifts) {
-    if (lft.id == lift_no) {
-      lft.moving = false;
+function startVirtualSimulation() {
+    clearInterval(intervalId);
+    if (validateLiftAndFloorEntries()) {
+        generateFloors(noOfFloors);
+        generateLifts(noOfLifts);
+        addButtonFunctionalities();
+        intervalId = setInterval(fullfillLiftCallsQueue, 1000);
     }
-  }
 }
 
-function doorAnimation(e) {
-  let target_id = e.target.id;
-  let lift_no = target_id[target_id.length - 1];
-  let lift = document.getElementById("l" + lift_no);
-  lift.removeEventListener("webkitTransitionEnd", doorAnimation);
-  let left_door = document.getElementById("ld" + lift_no);
-  let right_door = document.getElementById("rd" + lift_no);
-  left_door.removeEventListener("webkitTransitionEnd", doorAnimation);
-  right_door.removeEventListener("webkitTransitionEnd", doorAnimation);
-  right_door.addEventListener("webkitTransitionEnd", closeDoor);
-  left_door.style.transform = `translateX(-100%)`;
-  right_door.style.transform = `translateX(100%)`;
-  left_door.style.transition = `all 2.5s ease-out`;
-  right_door.style.transition = `all 2.5s ease-out`;
-}
+const validateLiftAndFloorEntries = () => {
+    noOfFloors = document.getElementById('noOfFloors').value;
+    noOfLifts = document.getElementById('noOfLifts').value;
 
-function scheduledLift(floor) {
-  let selected_lift;
-  let min_distance = Infinity;
-
-  for (let lift of lifts) {
-    if (!lift.moving && Math.abs(floor - lift.currentFloor) < min_distance) {
-      min_distance = Math.abs(floor - lift.currentFloor);
-      selected_lift = lift;
+    if (window.innerWidth <= 480 && noOfLifts > 3) {
+        alert("This screen size can't have more than 3 lifts");
+        return false;
     }
-  }
-  return selected_lift;
+    if (window.innerWidth > 481 && window.innerWidth <= 767 && noOfLifts > 5) {
+        alert("This screen size can't have more than 5 lifts");
+        return false;
+    }
+
+    if (noOfFloors === '' || noOfLifts === '') {
+        alert('Enter valid numbers for floors and lifts');
+        return false;
+    }
+
+    if (noOfFloors <= 0 || noOfLifts <= 0) {
+        alert('Negative values or zero are not supported');
+        return false;
+    }
+
+    return true;
+};
+
+const generateFloors = (n) => {
+    document.getElementById('simulationArea').innerHTML = '';
+    for (let i = 0; i < n; i++) {
+        let currLevel = `L${n - i - 1}`;
+        let floorNo = `Floor${n - i}`;
+        let currFloor = document.createElement('div');
+        currFloor.setAttribute('id', floorNo);
+        currFloor.classList.add('floor');
+
+        const isTopFloor = i === 0;
+        const isGroundFloor = i === n - 1;
+
+        currFloor.innerHTML = `
+            <p>${floorNo}</p>
+            <div>
+                ${isTopFloor ? '' : `<button id=up${currLevel} class="button-floor upBttn">▲</button>`}
+                ${isGroundFloor ? '' : `<button id=down${currLevel} class="button-floor downBttn">▼</button>`}
+            </div>
+        `;
+
+        document.getElementById('simulationArea').appendChild(currFloor);
+    }
+};
+
+function addButtonFunctionalities() {
+    const allButtons = document.querySelectorAll('.button-floor');
+    allButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const targetFlr = parseInt(btn.id.split('L')[1]);
+            console.log(`Button clicked: ${btn.id}, Target Floor: ${targetFlr}`);
+            
+            if (!activeLiftsDestinations.includes(targetFlr)) {
+                activeLiftsDestinations.push(targetFlr);
+                liftCallsQueue.push(targetFlr);
+            }
+        });
+    });
 }
 
-function moveLift(lift, to) {
-  let distance = -1 * (to - 1) * 100;
-  let lift_no = lift.id;
-  let from = lift.currentFloor;
-  lift.currentFloor = to;
-  lift.moving = true;
-  let lft = lift.lift;
-  lft.addEventListener("webkitTransitionEnd", doorAnimation);
-  lft.style.transform = `translateY(${distance}%)`;
-  let time = 2 * Math.abs(from - to);
-  if (time === 0) {
-    let e = {};
-    e.target = { id: `l${lift_no}` };
-    doorAnimation(e);
-  }
-  lft.style.transitionDuration = `${time}s`;
-  console.log(
-    `Lift Number: ${lift_no} \n Floor: \n From: ${from} To: ${to} \n Time: ${time} sec`
-  );
+
+function translateLift(liftNo, targetLiftPosn) {
+    const reqLift = document.getElementById(`Lift-${liftNo}`);
+    let currLiftPosn = parseInt(currLiftPositionArr[liftNo]);
+
+    console.log(`Translating Lift ${liftNo}: Current Position: ${currLiftPosn}, Target Position: ${targetLiftPosn}`);
+
+    if (currLiftPosn != targetLiftPosn) {
+        allLiftInfo[liftNo].inMotion = true;
+        let unitsToMove = parseInt(Math.abs(targetLiftPosn - currLiftPosn) + 1);
+        let motionDis = -100 * parseInt(targetLiftPosn);
+
+        reqLift.style.transitionTimingFunction = 'linear';
+        reqLift.style.transform = `translateY(${motionDis}px)`;
+        reqLift.style.transitionDuration = `${unitsToMove * 1}s`;
+
+        let timeInMs = unitsToMove * 1200;
+        setTimeout(() => {
+            currLiftPositionArr[liftNo] = targetLiftPosn;
+            animateLiftsDoors(liftNo, targetLiftPosn);
+        }, timeInMs);
+    } else {
+        allLiftInfo[liftNo].inMotion = true;
+        animateLiftsDoors(liftNo, targetLiftPosn);
+    }
 }
 
-function save_click(e) {
-  let clicked_on = e.target.id;
-  let n;
-  if (clicked_on.startsWith("up"))
-    n = Number(clicked_on.substring(2, clicked_on.length));
-  else if (clicked_on.startsWith("down"))
-    n = Number(clicked_on.substring(4, clicked_on.length));
-  q.push(n);
+function animateLiftsDoors(liftNo, targetLiftPosn) {
+    const leftGate = document.getElementById(`L${liftNo}left_gate`);
+    const rightGate = document.getElementById(`L${liftNo}right_gate`);
+    leftGate.classList.toggle('animateLiftsDoorsOnFloorStop');
+    rightGate.classList.toggle('animateLiftsDoorsOnFloorStop');
+
+    setTimeout(() => {
+        allLiftInfo[liftNo].inMotion = false;
+        leftGate.classList.toggle('animateLiftsDoorsOnFloorStop');
+        rightGate.classList.toggle('animateLiftsDoorsOnFloorStop');
+        activeLiftsDestinations = activeLiftsDestinations.filter((item) => item !== targetLiftPosn);
+    }, 2000);
 }
 
-function getButtons() {
-  let up_btn_list = document.getElementsByClassName("control-btn--up");
-  let down_btn_list = document.getElementsByClassName("control-btn--down");
-  for (let up_btn of up_btn_list) {
-    up_btn.addEventListener("click", save_click);
-  }
-  for (let down_btn of down_btn_list) {
-    down_btn.addEventListener("click", save_click);
-  }
+function findNearestFreeLift(flrNo) {
+    let prevDiff = Number.MAX_SAFE_INTEGER;
+    let nearestAvailableLift = -1;
+
+    for (let i = 0; i < currLiftPositionArr.length; i++) {
+        if (allLiftInfo[i].inMotion == false) {
+            const currDiff = Math.abs(currLiftPositionArr[i] - flrNo);
+            if (currDiff < prevDiff) {
+                prevDiff = currDiff;
+                nearestAvailableLift = i;
+            }
+        }
+    }
+
+    console.log(`Nearest Available Lift for Floor ${flrNo}: Lift ${nearestAvailableLift}`);
+    return nearestAvailableLift;
 }
 
-function make_lifts() {
-  no_of_lifts = input_lifts.value;
-  createLifts(no_of_lifts);
-  for (let lft of lifts) {
-    let lift = lft.lift;
-    lift.style.transform = null;
-    lift.style.transitionDuration = null;
-  }
+const generateLifts = (n) => {
+    allLiftInfo = [];
+    for (let i = 0; i < n; i++) {
+        let liftNo = `Lift-${i}`;
+        const currLift = document.createElement('div');
+        currLift.setAttribute('id', liftNo);
+        currLift.classList.add('lifts');
+        currLift.innerHTML = `
+            <p>Lift${i + 1}</p>
+            <div class="gate gateLeft" id="L${i}left_gate"></div>
+            <div class="gate gateRight" id="L${i}right_gate"></div>
+        `;
+        currLift.style.left = `${(i + 1) * 90}px`;
+        currLift.style.top = '0px';
+        document.getElementById('Floor1').appendChild(currLift);
+        currLiftPositionArr[i] = 0;
+
+        const currLiftDetail = {};
+        currLiftDetail.id = liftNo;
+        currLiftDetail.inMotion = false;
+        allLiftInfo.push(currLiftDetail);
+    }
+};
+
+function fullfillLiftCallsQueue() {
+    if (!(liftCallsQueue.length)) return;
+    let targetFlr = liftCallsQueue[0];
+    
+    console.log(`Processing Lift Calls Queue: Target Floor ${targetFlr}`);
+    
+    const liftToMove = findNearestFreeLift(targetFlr);
+    if (liftToMove != -1) {
+        translateLift(liftToMove, targetFlr);
+        liftCallsQueue.shift();
+    }
 }
-
-function make_floors() {
-  let container = document.getElementById("container");
-  container.innerHTML = "";
-  no_of_floors = input_floors.value;
-
-  for (let i = 1; i <= no_of_floors; i++) {
-    createFloor(i);
-  }
-}
-
-function place_lifts() {
-  let first_floor = document.getElementById("floor1");
-  for (let i = lifts.length - 1; i >= 0; i--) {
-    first_floor.insertBefore(
-      lifts[i].lift,
-      first_floor.childNodes[first_floor.childNodes.length - 1]
-    );
-  }
-}
-
-function check_for_scheduling() {
-  if (q.length === 0) return;
-  let floor = q.shift();
-  let lift = scheduledLift(floor);
-  if (!lift) {
-    q.unshift(floor);
-    return;
-  }
-  moveLift(lift, floor);
-}
-
-function start() {
-  clearInterval(intervalId);
-  q = [];
-  lifts = [];
-  make_floors();
-  make_lifts();
-  place_lifts();
-  getButtons();
-  intervalId = setInterval(check_for_scheduling, 100);
-}
-
-let input_btn = document.getElementById("input-btn");
-input_btn.addEventListener("click", start);

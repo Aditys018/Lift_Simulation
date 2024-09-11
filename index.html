@@ -2,23 +2,33 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lift Simulation</title>
     <link rel="stylesheet" href="styles.css">
+
+   
+    <title>Lift Simulation</title>
+    
 </head>
 <body>
-    <div id="form">
-        <label for="input-floors">Number of Floors:</label>
-        <input type="number" id="input-floors" min="1" value="4">
-        <label for="input-lifts">Number of Lifts:</label>
-        <input type="number" id="input-lifts" min="1" value="4">
-        <button id="input-btn">Start Simulation</button>
-    </div>
-   
-    <div id="container" class="building">
-        <!-- Floors and lifts will be dynamically created here -->
+    <h1>Lift Simulation</h1>
+
+    <div class="floor-input">  
+    <center><label for="noOfFloors">Number of Floors</label>
+    <input type="number" autocomplete="off" id="noOfFloors" name="noOfFloors"></center><br></br>
     </div>
 
+    <div class="lift-input">   
+    <center><label for="noOfLifts">Number of Lifts</label>
+    <input type="number" autocomplete="off"  id="noOfLifts" name="noOfLifts"></center><br></br>
+    
+    </div>
+
+    <center><button id="submit" class="generatebutton">Start Simulation</button></center>
+    <div id="simulationArea"></div>
+    <br>
+    <br>
+   
     <script src="script.js"></script>
 </body>
 </html>
