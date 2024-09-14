@@ -50,7 +50,6 @@ body {
     color: #e1e1ec;
     font-size: 18px;
     font-weight: bold;
-    
 }
 
 /* Style for the Start Simulation button */
@@ -384,94 +383,161 @@ input:first-of-type + input {
 }
 
 /* Responsive Styles */
-@media screen and (max-width: 480px) {
+@media (max-width: 1200px) {
+    #form-section {
+        margin-left: 20rem;
+        width: 40%;
+    }
+
+    #btn {
+        margin-left: 5rem;
+    }
+
+    .lift-container {
+        margin-left: 60px;
+    }
+
     .lifts {
-        width: 40px;
-        height: 50px;
-        background-color: #314963;
-        color: #507092;
-        font-size: 0.5px;
-        position: absolute;
-        left: -10px;
-        margin-left: -14px;
-        margin-right: -4px;
-        top: 0;
-        border: 1px solid;
-        align-items: center;
-        border-radius: 2.5px;
-        bottom: 0;
-        margin-top: 50px;
+        width: 50px;
+        height: 80px;
     }
-    
-    .lifts p {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-0%, -0%);
-    }
-    
-    .floor {
-        height: 100px;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        background-color: #1B2A40;
-        padding: 2.5px;
-        border-bottom: #e1e1ec 0.5px solid;
-    }
-    
-    .lifts .gate {
-        position: absolute;
-        height: 100%;
-        width: 50%;
-        background-color: #314963;
+
+    .generatebutton {
+        font-size: 60px;
+        padding: 10px 30px;
     }
 }
 
-@media (min-width: 481px) and (max-width: 767px) {
+@media (max-width: 992px) {
+    #form-section {
+        margin-left: 10rem;
+        width: 50%;
+    }
+
+    #btn {
+        margin-left: 2rem;
+        width: 60%;
+    }
+
+    .lift-container {
+        margin-left: 30px;
+    }
+
     .lifts {
         width: 45px;
-        height: 50px;
-        background-color: #314963;
-        color: #507092;
-        font-size: 0.5px;
-        position: absolute;
-        left: 0;
-        border: 1px solid;
-        align-items: center;
-        border-radius: 2.5px;
-        bottom: 0;
-        margin-top: 50px;
+        height: 70px;
     }
-    
-    .lifts p {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-0%, -0%);
-    }
-    
-    .floor {
-        height: 100px;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        background-color: #1B2A40;
-        padding: 2.5px;
-        border-bottom: #e1e1ec 0.5px solid;
-    }
-    
-    .lifts .gate {
-        position: absolute;
-        height: 100%;
-        width: 50%;
-        background-color: #507092;
+
+    .generatebutton {
+        font-size: 50px;
+        padding: 8px 20px;
     }
 }
 
-@media screen and (max-width: 1024px) {
-    .floor-container>p {
+@media (max-width: 768px) {
+    #form-section {
+        margin-left: 5rem;
+        width: 80%;
+    }
+
+    #btn {
+        margin-left: 1rem;
+        width: 80%;
+    }
+
+    .lift-container {
+        margin-left: 15px;
+    }
+
+    .lifts {
+        width: 40px;
+        height: 60px;
+    }
+
+    .generatebutton {
+        font-size: 40px;
+        padding: 6px 15px;
+    }
+}
+
+@media (max-width: 576px) {
+    #form-section {
+        margin-left: 1rem;
+        width: 100%;
+    }
+
+    #btn {
         margin-left: 0;
-        font-size: 10px;
+        width: 100%;
+    }
+
+    .lift-container {
+        margin-left: 0;
+    }
+
+    .lifts {
+        width: 35px;
+        height: 50px;
+    }
+
+    .generatebutton {
+        font-size: 30px;
+        padding: 4px 10px;
+    }
+}
+
+@media (max-width: 375px) {
+    #form-section {
+        margin-left: 0.5rem;
+        width: 100%;
+    }
+
+    #btn {
+        margin-left: 0;
+        width: 100%;
+        font-size: 14px;
+        padding: 8px;
+    }
+
+    .lift-container {
+        margin-left: 0;
+    }
+
+    .lifts {
+        width: 30px;
+        height: 40px;
+    }
+
+    .generatebutton {
+        font-size: 24px;
+        padding: 3px 8px;
+    }
+}
+
+@media (max-width: 320px) {
+    #form-section {
+        margin-left: 0;
+        width: 100%;
+    }
+
+    #btn {
+        margin-left: 0;
+        width: 100%;
+        font-size: 12px;
+        padding: 6px;
+    }
+
+    .lift-container {
+        margin-left: 0;
+    }
+
+    .lifts {
+        width: 25px;
+        height: 30px;
+    }
+
+    .generatebutton {
+        font-size: 20px;
+        padding: 2px 6px;
     }
 }
