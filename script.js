@@ -1,4 +1,3 @@
-// Select necessary DOM elements
 const liftInput = document.getElementById('lifts');
 const floorInput = document.getElementById('floors');
 const startBtn = document.getElementById('btn');
@@ -11,7 +10,6 @@ const header = document.getElementById("header");
 let liftState = [];
 let requestQueue = [];
 
-// Validate form inputs
 function validateForms(form) {
     for (const input of form) {
         if (input.hasAttribute("required") && input.value === "") {
@@ -22,23 +20,18 @@ function validateForms(form) {
     return true;
 }
 
-// Create floor buttons (Up/Down)
-// Create floor buttons (▲ for Up, ▼ for Down)
-// Create floor buttons (▲ for Up, ▼ for Down)
 function createButton(value, index, floors) {
     const btn = document.createElement('input');
     btn.setAttribute('type', "button");
 
-    // Set the button value to the arrow symbols
     if (value === 'Up') {
-        btn.setAttribute('value', '▲');  // Up arrow symbol
+        btn.setAttribute('value', '▲');
     } else if (value === 'Down') {
-        btn.setAttribute('value', '▼');  // Down arrow symbol
+        btn.setAttribute('value', '▼');
     }
 
     btn.id = `${value.toLowerCase()}${index}`;
 
-    // Hide the Up button on the top floor and the Down button on the ground floor
     if (index === floors - 1 && value === "Up" && floors > 1) {
         btn.style.visibility = "hidden";
     }
@@ -48,8 +41,6 @@ function createButton(value, index, floors) {
     return btn;
 }
 
-
-// Create lift doors
 function createLiftDoors(door, index) {
     const liftDoor = document.createElement('div');
     liftDoor.id = `lift-door-${door} lift-door-${door}-${index}`;
@@ -57,13 +48,11 @@ function createLiftDoors(door, index) {
     return liftDoor;
 }
 
-// Initialize lifts and their states
 function initializeLifts(lifts) {
     liftState = new Array(lifts).fill(null).map(() => ({ currentFloor: 0, inUse: false, isMoving: false }));
     console.log('Lifts initialized:', liftState);
 }
 
-// Open lift doors
 function openLiftDoors(lift) {
     return new Promise((resolve) => {
         const doorOne = lift.querySelector('.lift-door-one');
@@ -77,7 +66,6 @@ function openLiftDoors(lift) {
     });
 }
 
-// Close lift doors
 function closeLiftDoors(lift) {
     return new Promise((resolve) => {
         const doorOne = lift.querySelector('.lift-door-one');
@@ -91,7 +79,6 @@ function closeLiftDoors(lift) {
     });
 }
 
-// Process the request queue
 function processQueue() {
     if (requestQueue.length === 0) return;
 
@@ -100,7 +87,6 @@ function processQueue() {
     handleLiftsMove(lifts, direction, floorIndex);
 }
 
-// Disable or enable floor buttons
 function toggleFloorButton(buttonId, disable) {
     const button = document.getElementById(buttonId);
     if (button) {
@@ -108,7 +94,6 @@ function toggleFloorButton(buttonId, disable) {
     }
 }
 
-// Handle lift movement and door opening/closing
 function handleLiftsMove(lifts, direction, floorIndex) {
     const allLifts = document.querySelectorAll('.lift');
     let closestLift = null;
@@ -151,7 +136,6 @@ function handleLiftsMove(lifts, direction, floorIndex) {
     }
 }
 
-// Open and close the lift doors
 function openAndCloseLiftDoors(lift, floorIndex) {
     const liftIndex = Array.prototype.indexOf.call(document.querySelectorAll('.lift'), lift);
 
@@ -168,7 +152,6 @@ function openAndCloseLiftDoors(lift, floorIndex) {
     });
 }
 
-// Attach event listeners to floor buttons
 function handleLiftBtns(floors, lifts) {
     for (let i = floors - 1; i >= 0; i--) {
         document.getElementById(`up${i}`).addEventListener('click', function () {
@@ -184,7 +167,6 @@ function handleLiftBtns(floors, lifts) {
     }
 }
 
-// Dynamically update the floor container width based on the number of lifts
 function updateFloorContainerWidth(floorIndex, lifts) {
     const floorContainer = document.querySelector(`.floor-container.floor-container${floorIndex}`);
 
@@ -197,7 +179,6 @@ function updateFloorContainerWidth(floorIndex, lifts) {
     }
 }
 
-// Display floors and lifts in the UI
 function showFloorsAndLifts(floors, lifts) {
     for (let i = floors - 1; i >= 0; i--) {
         const floorItem = document.createElement('div');
@@ -253,7 +234,6 @@ function showFloorsAndLifts(floors, lifts) {
     handleLiftBtns(floors, lifts);
 }
 
-// Main start button listener
 function startBtnListner(e) {
     e.preventDefault();
 
@@ -265,13 +245,10 @@ function startBtnListner(e) {
         return;
     }
 
-    // Keep the form visible, remove this line: formSection.classList.add('hidden');
     liftFloorSection.classList.remove('hidden');
-    liftFloorSection.innerHTML = ''; // Clear previous content
+    liftFloorSection.innerHTML = '';
     showFloorsAndLifts(floors, lifts);
     initializeLifts(lifts);
 }
 
-
-// Add the event listener to the start button
 startBtn.addEventListener('click', startBtnListner);
