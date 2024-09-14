@@ -17,25 +17,93 @@ body {
     height: 100%;
 }
 
+/* General styles for the form section */
+#form-section {
+    margin-left: 40rem;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #1B2A40;
+    width: 30%;
+    height: auto; /* Adjust height to fit content */
+    position: relative; /* Ensure positioning of child elements */
+}
+
+/* Styles for form groups */
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    margin-bottom: 5px;
+    font-weight: bold;
+    margin-left: 5rem;
+}
+
+.form-group input {
+    width: 40%;
+    padding: 8px;
+    box-sizing: border-box;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    background-color: #1B2A40;
+    color: #e1e1ec;
+    font-size: 18px;
+    font-weight: bold;
+    
+}
+
+/* Style for the Start Simulation button */
+#btn {
+    display: block;
+    width: 40%;
+    padding: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+    background-color: #1B2A40;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 10rem;
+    transition: background-color 0.3s ease;
+    margin-top: 20px; /* Add margin to separate from previous elements */
+}
+
+#btn:hover {
+    background-color: #314963;
+}
+
+#btn:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+}
+
+/* Styles for the lift and floor UI */
+#lift-floor-UI {
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
 /* Styling for Number of Lifts label */
 #label-lifts {
-    color: #e1e1ec; /* Change this to the color you want */
-    font-size: 20px; /* Example size */
-    font-weight: bold; /* Example style */
-    margin-bottom: 5px;
-    margin-left: 40rem;
+    color: #e1e1ec;
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 1rem; /* Adjust spacing above the lift inputs */
 }
 
 /* Styling for Number of Floors label */
 #label-floors {
-    color: #e1e1ec; /* Change this to the color you want */
-    font-size: 16px; /* Example size */
-    font-style: italic; /* Example style */
-    margin-top: 100px;
+    color: #e1e1ec;
+    font-size: 20px;
+    font-style: italic;
+    margin-bottom: 1rem; /* Adjust spacing above the floor inputs */
+    font-weight: bold;
 }
 
-
-
+/* Floor and Lift Input Styles */
 .floor-input,
 .lift-input {
     margin: 5px;
@@ -54,6 +122,22 @@ body {
     color: #e1e1ec;
 }
 
+/* Floor and Lift Text Styles */
+.floor-text {
+    font-size: 18px;
+    color: #e1e1ec;
+    margin: 5px 0;
+    text-align: left;
+}
+
+.lift-text {
+    font-size: 18px;
+    color: #e1e1ec;
+    margin: 5px 0;
+    text-align: left;
+}
+
+/* Button Styles */
 .button-floor {
     justify-content: left;
     background-color: #314963;
@@ -90,6 +174,7 @@ body {
     transform: scale(1.1);
 }
 
+/* Lift Styles */
 .lifts {
     width: 60px;
     height: 100px;
@@ -124,7 +209,7 @@ body {
 }
 
 .liftMotion {
-    transition-duration: 2s;
+    transition-duration: 0.5s;
 }
 
 .lifts .gate {
@@ -161,6 +246,7 @@ body {
     }
 }
 
+/* General Layout Styles */
 .main-container {
     margin-top: 20px;
 }
@@ -177,6 +263,7 @@ body {
     color: #e1e1ec;
 }
 
+/* Form Styles */
 .form-container {
     display: flex;
     flex-direction: column;
@@ -238,10 +325,13 @@ input:first-of-type + input {
 }
 
 .floor-container {
-    justify-content: flex-start;
-    align-items: center;
-    gap: 60px;
-    height: 80px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Align to the top of the container */
+    gap: 10px; /* Space between buttons */
+    margin: 20px; /* Add margin if needed */
+    padding: 0; /* Ensure no extra padding */
+    margin-top: -2.5rem;
 }
 
 .floor-container>p {
@@ -293,7 +383,7 @@ input:first-of-type + input {
     background-color: #e1e1ec;
 }
 
-/* For mobile */
+/* Responsive Styles */
 @media screen and (max-width: 480px) {
     .lifts {
         width: 40px;

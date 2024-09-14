@@ -14,11 +14,15 @@
     <!-- Form Section -->
     <div id="form-section">
         <form id="form">
-            <label id="label-lifts" for="lifts">Number of Lifts:</label>
-            <input type="number" id="lifts" name="lifts" min="1" required>
-            <label id="label-floors" for="floors">Number of Floors:</label>
-            <input type="number" id="floors" name="floors" min="1" required>
-            <button type="submit" id="btn">Start Simulation</button>
+            <div class="form-group">
+                <label id="label-lifts" for="lifts">Number of Lifts:</label>
+                <input type="number" id="lifts" name="lifts" min="1" required>
+            </div>
+            <div class="form-group">
+                <label id="label-floors" for="floors">Number of Floors:</label>
+                <input type="number" id="floors" name="floors" min="1" required>
+            </div>
+            <button type="button" id="btn">Start Simulation</button> <!-- Changed type to button -->
         </form>
     </div>
 
@@ -33,8 +37,6 @@
         const startBtn = document.getElementById('btn');
         const formSection = document.getElementById('form-section');
         const liftFloorSection = document.getElementById('lift-floor-UI');
-        const footerContainer = document.getElementById('footer');
-        const header = document.getElementById('header');
 
         let liftState = [];
         let requestQueue = [];
