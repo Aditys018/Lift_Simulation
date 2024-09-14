@@ -1,18 +1,39 @@
 * {
     box-sizing: border-box;
-    font-family: 'Roboto' , sans-serif;
-    
+    font-family: 'Roboto', sans-serif;
 }
 
-h1{
+h1 {
     text-align: center;
-    font-weight:10px;
-    color:#e1e1ec;
+    font-weight: 10px;
+    color: #e1e1ec;
 }
 
-body{
-    background-color:#1B2A40;
+body {
+    background-color: #1B2A40;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
 }
+
+/* Styling for Number of Lifts label */
+#label-lifts {
+    color: #e1e1ec; /* Change this to the color you want */
+    font-size: 20px; /* Example size */
+    font-weight: bold; /* Example style */
+    margin-bottom: 5px;
+    margin-left: 40rem;
+}
+
+/* Styling for Number of Floors label */
+#label-floors {
+    color: #e1e1ec; /* Change this to the color you want */
+    font-size: 16px; /* Example size */
+    font-style: italic; /* Example style */
+    margin-top: 100px;
+}
+
 
 
 .floor-input,
@@ -25,43 +46,42 @@ body{
 .floor-input input,
 .lift-input input {
     background-color: #1B2A40;
-    border:#ffffff;  
     border: 1px solid #e1e1ec;
     border-radius: 8px;
-    padding: 5px 10px;
+    padding: 10px 10px;
     font-size: 20px;
     font-family: sans-serif;
     color: #e1e1ec;
 }
 
-.button-floor{
+.button-floor {
     justify-content: left;
-    align-items: flex-start;
     background-color: #314963;
     border: 1px #e1e1ec;
-    margin: 0px;
-    border-radius:4px;
+    margin: 8px;
+    border-radius: 4px;
     font-size: 20px;
-    padding:5px 5px;
+    padding: 5px 5px;
     margin-bottom: 5px;
     display: inline;
+    margin-top: 5px;
     color: #e1e1ec;
 }
 
 .button-floor:hover {
-    transform:scale(1.1)
+    transform: scale(1.1);
 }
 
 .generatebutton {
     margin-bottom: 10px;
     outline: none;
     cursor: pointer;
-    font-size: 20px;
+    font-size: 80px;
     padding: 15px 40px;
     border-radius: 5px;
     border: none;
-    background-color:#314963;
-    margin-right:auto;
+    background-color: #314963;
+    margin-right: auto;
     color: #e1e1ec;
     font-weight: 10px;
 }
@@ -75,10 +95,10 @@ body{
     height: 100px;
     background-color: #507092;
     color: #314963;
-    font-size:0;
+    font-size: 0;
     position: absolute;
     left: 0;
-    top:0;
+    top: 0;
     border: 2px solid;
     align-items: center;
     border-radius: 8px;
@@ -100,10 +120,10 @@ body{
     justify-content: space-between;
     padding: 5px;
     color: #e1e1ec;
-    border-bottom: #e1e1ec 0.5px solid;
+    border-bottom: 0.5px solid #e1e1ec;
 }
 
-.liftMotion{
+.liftMotion {
     transition-duration: 2s;
 }
 
@@ -123,7 +143,7 @@ body{
     right: 0;
 }
 
-.animateLiftsDoorsOnFloorStop  {
+.animateLiftsDoorsOnFloorStop {
     animation-duration: 2s;
     animation-timing-function: linear;
     animation-name: doorSimulation;
@@ -140,6 +160,139 @@ body{
         width: 50%;
     }
 }
+
+.main-container {
+    margin-top: 20px;
+}
+
+.title-container {
+    padding: 0 20%;
+    color: #e1e1ec;
+}
+
+.title {
+    text-align: center;
+    padding: 1rem;
+    border-radius: 10px;
+    color: #e1e1ec;
+}
+
+.form-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 5px;
+    left: 80px;
+    right: 0;
+    bottom: 0;
+    border: 1px solid transparent;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    border-radius: 10px;
+    gap: 6rem;
+}
+
+.hidden {
+    display: none;
+}
+
+.lift-floor-UI-container {
+    padding: 2%;
+    margin: 0 3%;
+}
+
+.lift-btn-container {
+    flex-direction: column;
+    gap: 0.5rem;
+    width: 60px;
+}
+
+.lift-btn-container>input {
+    background-color: #314963;
+    padding: 0.5rem;
+    border: 1px solid transparent;
+    border-radius: 5px;
+    width: fit-content;
+    font-weight: bold;
+    cursor: pointer;
+    margin-right: 8px;
+}
+
+.lift-btn-container>input:hover {
+    opacity: 0.9;
+    color: #e1e1ec;
+}
+
+.lift-btn-container>input:active {
+    transform: scale(1.1);
+}
+
+input:first-of-type + input {
+    background-color: #314963;
+}
+
+.floor-container {
+    justify-content: flex-start;
+    align-items: center;
+    gap: 60px;
+    height: 80px;
+}
+
+.floor-container>p {
+    margin-left: -60px;
+}
+
+.lift-container {
+    display: flex;
+    justify-content: flex-start;
+    margin-left: 90px;
+    gap: 1%;
+}
+
+.lift {
+    display: flex;
+    background-color: #507092;
+    border-radius: 8px;
+}
+
+.lift>div {
+    height: 100px;
+    width: 45px;
+    background-color: #314963;
+    border: 1px solid #e1e1ec;
+    border-radius: 4px;
+    transition: margin 2.5s;
+}
+
+.door-half-one-animate {
+    margin-right: 80%;
+    transition: margin 2.5s;
+}
+
+.door-half-two-animate {
+    transition: margin 2.5s;
+}
+
+.floor-item {
+    height: 100px;
+    color: #e1e1ec;
+    margin-left: 2rem;
+}
+
+.floor-line {
+    width: 300%;
+    margin-left: 2px;
+    margin-bottom: 80px;
+    height: 1px;
+    background-color: #e1e1ec;
+}
+
 /* For mobile */
 @media screen and (max-width: 480px) {
     .lifts {
@@ -147,89 +300,88 @@ body{
         height: 50px;
         background-color: #314963;
         color: #507092;
-        font-size:0.5px;
+        font-size: 0.5px;
         position: absolute;
         left: -10px;
-        margin-left:-14px;
-        margin-right:-4px;
-        top:0;
+        margin-left: -14px;
+        margin-right: -4px;
+        top: 0;
         border: 1px solid;
         align-items: center;
         border-radius: 2.5px;
-        content: none;
-        bottom:0;
-        margin-top:50px;
-  }
+        bottom: 0;
+        margin-top: 50px;
+    }
     
     .lifts p {
         position: absolute;
         top: 50%;
         left: 50%;
         transform: translate(-0%, -0%);
-  }
+    }
     
     .floor {
-      height: 100px;  
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      background-color: #1B2A40;
-      padding: 2.5px;
-      border-bottom: #e1e1ec 0.5px solid;
-  }
+        height: 100px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        background-color: #1B2A40;
+        padding: 2.5px;
+        border-bottom: #e1e1ec 0.5px solid;
+    }
     
     .lifts .gate {
         position: absolute;
         height: 100%;
         width: 50%;
-        border-radius: 8px;
         background-color: #314963;
-  }
-
+    }
 }
 
-
 @media (min-width: 481px) and (max-width: 767px) {
-  .lifts {
+    .lifts {
         width: 45px;
         height: 50px;
         background-color: #314963;
         color: #507092;
-        font-size:0.5px;
+        font-size: 0.5px;
         position: absolute;
-        left: 0; 
+        left: 0;
         border: 1px solid;
         align-items: center;
         border-radius: 2.5px;
-        content: none;
-        bottom:0;
-        margin-top:50px;
-}
-  
-  .lifts p {
+        bottom: 0;
+        margin-top: 50px;
+    }
+    
+    .lifts p {
         position: absolute;
         top: 50%;
         left: 50%;
         transform: translate(-0%, -0%);
-}
+    }
     
-  .floor {
-      height: 100px;  
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      background-color: #1B2A40;
-      padding: 2.5px;
-      border-bottom: #e1e1ec 0.5px solid;
-  }
+    .floor {
+        height: 100px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        background-color: #1B2A40;
+        padding: 2.5px;
+        border-bottom: #e1e1ec 0.5px solid;
+    }
     
- .lifts .gate {
+    .lifts .gate {
         position: absolute;
-        height: 100%;  
+        height: 100%;
         width: 50%;
         background-color: #507092;
+    }
 }
-  
-}    
+
+@media screen and (max-width: 1024px) {
+    .floor-container>p {
+        margin-left: 0;
+        font-size: 10px;
+    }
+}
