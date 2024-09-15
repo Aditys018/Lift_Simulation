@@ -16,3 +16,5 @@ The task is to create a web app where you can simulate lift mechanics for a clie
    - Lift moving at 2s per floor
    - Lift stopping at every floor where it was called
    - Mobile friendly design
+
+
