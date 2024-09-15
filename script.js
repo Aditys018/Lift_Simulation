@@ -252,12 +252,42 @@ function showFloorsAndLifts(floors, lifts) {
 }
 
 function startBtnListner(e) {
-    e.preventDefault(); 
+    e.preventDefault();
 
-    
-    if (!validateForms()) {
-        return; 
+    const lifts = liftInput.value;
+    const floors = floorInput.value;
+
+    // Check if inputs are empty
+    if (lifts === "" || floors === "") {
+        alert("Please fill in all required values.");
+        return;
     }
+
+    // Check if inputs contain alphabets
+    if (/[a-zA-Z]/.test(lifts) || /[a-zA-Z]/.test(floors)) {
+        alert("Please enter numeric values only.");
+        return;
+    }
+
+    // Convert to numbers
+    const liftsNum = Number(lifts);
+    const floorsNum = Number(floors);
+
+    // Check if inputs are positive integers
+    if (!Number.isInteger(liftsNum) || !Number.isInteger(floorsNum) || liftsNum <= 0 || floorsNum <= 0) {
+        alert("Please enter positive integers for both lifts and floors.");
+        return;
+    }
+
+    // Proceed if validation passes
+    liftFloorSection.classList.remove('hidden');
+    liftFloorSection.innerHTML = '';
+    showFloorsAndLifts(floorsNum, liftsNum);
+    initializeLifts(liftsNum);
+}
+
+startBtn.addEventListener('click', startBtnListner);
+
 
     
     const lifts = parseInt(liftInput.value, 10);
@@ -267,6 +297,6 @@ function startBtnListner(e) {
     liftFloorSection.innerHTML = '';
     showFloorsAndLifts(floors, lifts);
     initializeLifts(lifts);
-}
+
 
 startBtn.addEventListener('click', startBtnListner);
