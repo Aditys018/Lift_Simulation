@@ -403,7 +403,7 @@ input:first-of-type + input {
     }
 
     .lift-container {
-        margin-left: 60px;
+        margin-left: 80px;
     }
 
     .lifts {
@@ -430,7 +430,7 @@ input:first-of-type + input {
     }
 
     .lift-container {
-        margin-left: 30px;
+        margin-left: 80px;
     }
 
     .lifts {
@@ -457,7 +457,7 @@ input:first-of-type + input {
     }
 
     .lift-container {
-        margin-left: 15px;
+        margin-left: 80px;
     }
 
     .lifts {
@@ -484,13 +484,13 @@ input:first-of-type + input {
     }
 
     .lift-container {
-        margin-left: 0;
+        margin-left: 80;
     }
 
     .lifts {
         width: 35px;
         height: 50px;
-        margin-left: 10px;
+        margin-left: 30px;
     }
 
     .generatebutton {
@@ -513,7 +513,7 @@ input:first-of-type + input {
     }
 
     .lift-container {
-        margin-left: 0;
+        margin-left: 80;
     }
 
     .lifts {
@@ -542,7 +542,7 @@ input:first-of-type + input {
     }
 
     .lift-container {
-        margin-left: 0;
+        margin-left: 80;
     }
 
     .lifts {
