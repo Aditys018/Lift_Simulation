@@ -1,6 +1,9 @@
 # Lift-Simulation
 The task is to create a web app where you can simulate lift mechanics for a client
 
+# UI
+![Lift](https://github.com/user-attachments/assets/d8460eeb-23c8-48f7-a123-6127fa0e69c3)
+
 # Requirements
   1. Have a page where you input the number of floors and lifts from the user
   2. An interactive UI is generated, where we have visual depictions of lifts and buttons on floors
