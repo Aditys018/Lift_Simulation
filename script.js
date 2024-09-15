@@ -1,22 +1,39 @@
 const liftInput = document.getElementById('lifts');
 const floorInput = document.getElementById('floors');
 const startBtn = document.getElementById('btn');
-const forms = document.getElementById("form");
-const formSection = document.getElementById("form-section");
 const liftFloorSection = document.getElementById("lift-floor-UI");
-const footerContainer = document.getElementById("footer");
-const header = document.getElementById("header");
 
 let liftState = [];
 let requestQueue = [];
 
-function validateForms(form) {
-    for (const input of form) {
-        if (input.hasAttribute("required") && input.value === "") {
-            alert("Please fill in all required values.");
-            return false;
-        }
+
+function isPositiveInteger(value) {
+    const number = parseInt(value, 10);
+    return Number.isInteger(number) && number > 0;
+}
+
+
+function validateForms() {
+    const lifts = liftInput.value;
+    const floors = floorInput.value;
+
+    
+    if (lifts === "" || floors === "") {
+        alert("Please fill in all required values.");
+        return false;
     }
+
+    if (isNaN(lifts) || isNaN(floors)) {
+        alert("Please enter numeric values for both lifts and floors.");
+        return false;
+    }
+
+   
+    if (!isPositiveInteger(lifts) || !isPositiveInteger(floors)) {
+        alert("Please enter positive integers for both lifts and floors.");
+        return false;
+    }
+
     return true;
 }
 
@@ -103,7 +120,7 @@ function handleLiftsMove(lifts, direction, floorIndex) {
 
     for (let i = 0; i < allLifts.length; i++) {
         const lift = allLifts[i];
-        let currentFloor = parseInt(lift.dataset.currentFloor);
+        let currentFloor = parseInt(lift.dataset.currentFloor, 10);
         let distance = Math.abs(currentFloor - floorIndex);
 
         if (!liftState[i].inUse && !liftState[i].isMoving && distance < minimumDistance) {
@@ -120,7 +137,7 @@ function handleLiftsMove(lifts, direction, floorIndex) {
         const floorHeight = document.querySelector('.floor-item').offsetHeight;
         const travelTime = minimumDistance * 2;
 
-        if (parseInt(closestLift.dataset.currentFloor) === floorIndex) {
+        if (parseInt(closestLift.dataset.currentFloor, 10) === floorIndex) {
             openAndCloseLiftDoors(closestLift, floorIndex);
         } else {
             closestLift.style.transition = `transform ${travelTime}s linear`;
@@ -235,15 +252,16 @@ function showFloorsAndLifts(floors, lifts) {
 }
 
 function startBtnListner(e) {
-    e.preventDefault();
+    e.preventDefault(); 
 
-    const lifts = parseInt(liftInput.value);
-    const floors = parseInt(floorInput.value);
-
-    if (lifts <= 0 || floors <= 0) {
-        alert("Either floors or lifts cannot be 0. Please enter a value more than or equal to 1.");
-        return;
+    
+    if (!validateForms()) {
+        return; 
     }
+
+    
+    const lifts = parseInt(liftInput.value, 10);
+    const floors = parseInt(floorInput.value, 10);
 
     liftFloorSection.classList.remove('hidden');
     liftFloorSection.innerHTML = '';

@@ -285,23 +285,42 @@
         }
 
         function startBtnListner(e) {
-            e.preventDefault();
+    e.preventDefault();
 
-            const lifts = parseInt(liftInput.value);
-            const floors = parseInt(floorInput.value);
+    const lifts = liftInput.value;
+    const floors = floorInput.value;
 
-            if (lifts <= 0 || floors <= 0) {
-                alert("Either floors or lifts cannot be 0. Please enter a value more than or equal to 1.");
-                return;
-            }
+    
+    if (lifts === "" || floors === "") {
+        alert("Please fill in Positive Integer values.");
+        return;
+    }
 
-            liftFloorSection.innerHTML = ''; 
-            liftFloorSection.classList.remove('hidden');
-            showFloorsAndLifts(floors, lifts);
-            initializeLifts(lifts);
-        }
+    
+    if (/[a-zA-Z]/.test(lifts) || /[a-zA-Z]/.test(floors)) {
+        alert("Please enter numeric values only.");
+        return;
+    }
 
-        startBtn.addEventListener('click', startBtnListner);
+   
+    const liftsNum = Number(lifts);
+    const floorsNum = Number(floors);
+
+    
+    if (!Number.isInteger(liftsNum) || !Number.isInteger(floorsNum) || liftsNum <= 0 || floorsNum <= 0) {
+        alert("Please enter positive integers for both lifts and floors.");
+        return;
+    }
+
+    
+    liftFloorSection.classList.remove('hidden');
+    liftFloorSection.innerHTML = '';
+    showFloorsAndLifts(floorsNum, liftsNum);
+    initializeLifts(liftsNum);
+}
+
+startBtn.addEventListener('click', startBtnListner);
+
     </script>
 </body>
 </html>
