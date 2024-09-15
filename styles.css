@@ -157,6 +157,7 @@ body {
 
 .lift-btn-container input[type="button"] {
     margin-top: -9.5px;
+    color: #e1e1ec;
 }
 
 .lift-btn-container input:first-child {

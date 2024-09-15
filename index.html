@@ -5,13 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lift Simulation</title>
     <link rel="stylesheet" href="styles.css">
+    <style>
+        .lift-btn-container input.active {
+            background-color: #e1e1e1;
+            color: #314960;
+        }
+    </style>
 </head>
 <body>
     <div id="header">
         <h1>Lift Simulation</h1>
     </div>
 
-   
     <div id="form-section">
         <form id="form">
             <div class="form-group">
@@ -26,12 +31,9 @@
         </form>
     </div>
 
-   
     <div id="lift-floor-UI"></div>
 
-    
     <script>
-       
         const liftInput = document.getElementById('lifts');
         const floorInput = document.getElementById('floors');
         const startBtn = document.getElementById('btn');
@@ -41,7 +43,6 @@
         let liftState = [];
         let requestQueue = [];
 
-        
         function validateForms(form) {
             for (const input of form) {
                 if (input.hasAttribute("required") && input.value === "") {
@@ -52,15 +53,14 @@
             return true;
         }
 
-        
         function createButton(value, index, floors) {
             const btn = document.createElement('input');
             btn.setAttribute('type', "button");
 
             if (value === 'Up') {
-                btn.setAttribute('value', '▲');  
+                btn.setAttribute('value', '▲');
             } else if (value === 'Down') {
-                btn.setAttribute('value', '▼');  
+                btn.setAttribute('value', '▼');
             }
 
             btn.id = `${value.toLowerCase()}${index}`;
@@ -74,7 +74,6 @@
             return btn;
         }
 
-        
         function createLiftDoors(door, index) {
             const liftDoor = document.createElement('div');
             liftDoor.id = `lift-door-${door} lift-door-${door}-${index}`;
@@ -82,13 +81,25 @@
             return liftDoor;
         }
 
-        
         function initializeLifts(lifts) {
             liftState = new Array(lifts).fill(null).map(() => ({ currentFloor: 0, inUse: false, isMoving: false }));
             console.log('Lifts initialized:', liftState);
         }
 
-        
+        function activateLiftButton(buttonId) {
+            const button = document.getElementById(buttonId);
+            if (button) {
+                button.classList.add('active');
+            }
+        }
+
+        function deactivateLiftButton(buttonId) {
+            const button = document.getElementById(buttonId);
+            if (button) {
+                button.classList.remove('active');
+            }
+        }
+
         function openLiftDoors(lift) {
             return new Promise((resolve) => {
                 const doorOne = lift.querySelector('.lift-door-one');
@@ -102,7 +113,6 @@
             });
         }
 
-        
         function closeLiftDoors(lift) {
             return new Promise((resolve) => {
                 const doorOne = lift.querySelector('.lift-door-one');
@@ -116,7 +126,6 @@
             });
         }
 
-        
         function processQueue() {
             if (requestQueue.length === 0) return;
 
@@ -125,7 +134,6 @@
             handleLiftsMove(lifts, direction, floorIndex);
         }
 
-        
         function toggleFloorButton(buttonId, disable) {
             const button = document.getElementById(buttonId);
             if (button) {
@@ -133,13 +141,13 @@
             }
         }
 
-        
         function handleLiftsMove(lifts, direction, floorIndex) {
             const allLifts = document.querySelectorAll('.lift');
             let closestLift = null;
             let minimumDistance = Infinity;
 
             toggleFloorButton(`${direction}${floorIndex}`, true);
+            activateLiftButton(`${direction}${floorIndex}`);
 
             for (let i = 0; i < allLifts.length; i++) {
                 const lift = allLifts[i];
@@ -176,7 +184,6 @@
             }
         }
 
-       
         function openAndCloseLiftDoors(lift, floorIndex) {
             const liftIndex = Array.prototype.indexOf.call(document.querySelectorAll('.lift'), lift);
 
@@ -187,13 +194,14 @@
 
                     toggleFloorButton(`up${floorIndex}`, false);
                     toggleFloorButton(`down${floorIndex}`, false);
+                    deactivateLiftButton(`up${floorIndex}`);
+                    deactivateLiftButton(`down${floorIndex}`);
 
                     processQueue();
                 });
             });
         }
 
-       
         function handleLiftBtns(floors, lifts) {
             for (let i = floors - 1; i >= 0; i--) {
                 document.getElementById(`up${i}`).addEventListener('click', function () {
@@ -209,7 +217,6 @@
             }
         }
 
-        
         function updateFloorContainerWidth(floorIndex, lifts) {
             const floorContainer = document.querySelector(`.floor-container.floor-container${floorIndex}`);
 
@@ -222,7 +229,6 @@
             }
         }
 
-        
         function showFloorsAndLifts(floors, lifts) {
             for (let i = floors - 1; i >= 0; i--) {
                 const floorItem = document.createElement('div');
@@ -278,7 +284,6 @@
             handleLiftBtns(floors, lifts);
         }
 
-        
         function startBtnListner(e) {
             e.preventDefault();
 
@@ -296,7 +301,6 @@
             initializeLifts(lifts);
         }
 
-        
         startBtn.addEventListener('click', startBtnListner);
     </script>
 </body>
